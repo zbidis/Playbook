@@ -1,0 +1,8 @@
+- name: Create VLAN if don’t exist on a Cisco switch
+  hosts: Individuals
+  gather_facts: false
+  vars: {vlan_id: '2', vlan_name: v2}
+  tasks:
+  - name: Collect facts about VLAN "{{ vlan_id }}" on device
+    ios_config:
+      lines: ['vlan {{ vlan_id }}', 'name {{ vlan_name }}']
