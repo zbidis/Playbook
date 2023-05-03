@@ -2,10 +2,6 @@
 - name: Add VLAN 100 to Cisco switch
   hosts: switches
   gather_facts: no
-  spec:
-    config_map:
-      name: ansible-netcommon
-      namespace: awx  
   vars:
     vlan_id: 100
     switch_username: szbidi
