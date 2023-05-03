@@ -1,54 +1,20 @@
----
-- name: Add VLAN 100 to Cisco switch
+- name: Create VLAN on Cisco switch
   hosts: switches
   gather_facts: no
+  connection: ssh
   vars:
     vlan_id: 100
-    switch_username: szbidi
-    switch_password: Cisco123*
+    vlan_name: management
 
   tasks:
-    - name: Telnet to switch
-      telnet:
-        user: "{{ switch_username }}"
-        password: "{{ switch_password }}"
-        login_prompt: "Username:"
-        password_prompt: "Password:"
-        prompt: "#"
-        timeout: 10
-      register: telnet_output
+    - name: Configure VLAN
+      ios_command:
+        commands:
+          - "vlan {{ vlan_id }}"
+          - "name {{ vlan_name }}"
+      register: output
 
-    - name: Add VLAN 100
-      expect:
-        command: "vlan {{ vlan_id }}"
-        responses:
-          "vlan {{ vlan_id }} already exists": "exit\r\n"
-          "Enter VLAN ID": "{{ vlan_id }}\r\n"
-          "VLAN Name": "VLAN 100\r\n"
-          "Add more VLANs? (y/n)": "n\r\n"
-        echo: no
-      when: "'already exists' not in telnet_output.stdout_lines[-1]"
-      register: vlan_output
-
-    - name: Add VLAN to switch interface
-      expect:
-        command: "interface {{ interface }}"
-        responses:
-          "Enter interface type and number": "{{ interface }}\r\n"
-          "Enter VLAN ID": "{{ vlan_id }}\r\n"
-          "Add more VLANs? (y/n)": "n\r\n"
-        echo: no
-      loop: "{{ switch_interfaces }}"
-      register: interface_output
-      vars:
-        switch_interfaces:
-          - eth0/1
-          - eth0/2
-
-    - name: Save switch configuration
-      expect:
-        command: "write mem"
-        responses:
-          "Write startup-config? (y/n)": "y\r\n"
-          "OK": ""
-        echo: no
+    - name: Save configuration
+      ios_command:
+        commands:
+          - "write memory"
