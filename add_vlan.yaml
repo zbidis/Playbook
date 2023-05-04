@@ -14,7 +14,7 @@
 
   tasks:
     - name: Show running-config
-      cisco.ios.ios_command:
+      ios_command:
         provider: "{{ provider }}"
         commands:
           - show running-config
