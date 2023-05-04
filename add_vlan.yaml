@@ -1,20 +1,25 @@
-- name: Create VLAN on Cisco switch
+---
+- name: Show Running Config on Cisco switch
   hosts: switches
   gather_facts: no
-  connection: ssh
+  connection: network_cli
   vars:
-    vlan_id: 100
-    vlan_name: management
+    provider:
+      host: "{{ inventory_hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      authorize: yes
+      auth_pass: "{{ enable_password }}"
+      platform: cisco_ios
 
   tasks:
-    - name: Configure VLAN
-        cisco.ios:
+    - name: Show running-config
+      cisco.ios.ios_command:
+        provider: "{{ provider }}"
         commands:
-          - "vlan {{ vlan_id }}"
-          - "name {{ vlan_name }}"
+          - show running-config
       register: output
 
-    - name: Save configuration
-        cisco.ios:
-        commands:
-          - "write memory"
+    - name: Print output
+      debug:
+        var: output.stdout_lines
