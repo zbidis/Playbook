@@ -8,13 +8,13 @@
 
   tasks:
     - name: Configure VLAN
-      ios_command:
+        cisco.ios.ios_command:
         commands:
           - "vlan {{ vlan_id }}"
           - "name {{ vlan_name }}"
       register: output
 
     - name: Save configuration
-      ios_command:
+        cisco.ios.ios_command:
         commands:
           - "write memory"
