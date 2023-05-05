@@ -1,4 +1,7 @@
 ---
+collections:
+  - cisco.ios
+  - ansible.netcommon
 - name: Show Running Config on Cisco switch
   hosts: switches
   gather_facts: no
