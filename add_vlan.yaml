@@ -12,7 +12,6 @@
       username: "{{ username }}"
       password: "{{ password }}"
       authorize: yes
-      auth_pass: "{{ enable_password }}"
       platform: cisco_ios
 
   tasks:
