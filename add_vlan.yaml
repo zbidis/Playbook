@@ -1,27 +1,32 @@
----
-- name: Show Running Config on Cisco switch
+- name: Add VLAN to switch
   hosts: all
+  gather_facts: no
   vars:
     username: szbidi
     password: Cisco123*
-  gather_facts: no
-  connection: network_cli
-  vars:
-    provider:
-      host: "{{ inventory_hostname }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
-      authorize: yes
-      platform: cisco_ios
-
+    enable_password: Cisco123*
   tasks:
     - name: Show running-config
       ios_command:
-        provider: "{{ provider }}"
         commands:
           - show running-config
-      register: output
-
-    - name: Print output
-      debug:
-        var: output.stdout_lines
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          authorize: True
+          auth_pass: "{{ enable_password }}"
+          platform: cisco_ios
+      register: running_config
+    - name: Create VLAN
+      ios_vlan:
+        vlan_id: 100
+        name: TEST_VLAN
+        state: present
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          authorize: True
+          auth_pass: "{{ enable_password }}"
+          platform: cisco_ios
