@@ -1,6 +1,6 @@
 ---
 collections:
-  - cisco.ios
+  - awx.cisco.ios
 - name: Show Running Config on Cisco switch
   hosts: switches
   gather_facts: no
