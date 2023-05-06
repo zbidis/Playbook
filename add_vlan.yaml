@@ -1,6 +1,6 @@
 ---
 - name: Show Running Config on Cisco switch
-  hosts: switches
+  hosts: all
   gather_facts: no
   connection: network_cli
   vars:
