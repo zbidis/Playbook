@@ -1,6 +1,9 @@
 ---
 - name: Show Running Config on Cisco switch
   hosts: all
+  vars:
+    username: szbidi
+    password: Cisco123*
   gather_facts: no
   connection: network_cli
   vars:
