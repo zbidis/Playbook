@@ -1,6 +1,6 @@
 ---
 - name: Add VLAN to switch
-  hosts: SW_Core_TN
+  hosts: SW_Core_MA
   gather_facts: no
   vars:
     username: szbidi
