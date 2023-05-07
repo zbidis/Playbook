@@ -2,7 +2,6 @@
 - name: Add VLAN to switch
   hosts: SW_Core_TN
   gather_facts: no
-  inventory: switches_Marroco
   vars:
     username: szbidi
     password: Cisco123*
