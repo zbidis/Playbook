@@ -10,9 +10,9 @@
       prompt: "Enter IP address for VLAN interface"
       private: no
   vars:
-    username: admin
-    password: password
-    enable_password: enable_password
+    username: szbidi
+    password: Cisco123*
+    enable_password: Cisco123*
   tasks:
     - name: Create VLAN
       ios_vlan:
