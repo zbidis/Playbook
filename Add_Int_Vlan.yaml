@@ -23,10 +23,10 @@
           platform: cisco_ios
     - name: Create VLAN interface
       ios_config:
-        lines:
-          - int vlan {{ vlan_id }}
-          - no shutdown
-          - ip addr {{vlan_ip}} {{subnet}}
+        src: |
+          interface VLAN {{ vlan_id }}
+          description VLAN {{ vlan_id }}
+          ip address {{ vlan_ip }}/24
         state: present
         provider:
           host: "{{ inventory_hostname }}"
