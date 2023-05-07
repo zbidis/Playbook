@@ -12,7 +12,7 @@
     - name: Create VLAN
       ios_vlan:
         vlan_id: "{{ vlan_id }}"
-        name: "VLAN{{ vlan_id }}"
+        name: "VLAN{{ vlan_name }}"
         state: present
         provider:
           host: "{{ inventory_hostname }}"
