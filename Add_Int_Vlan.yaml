@@ -22,14 +22,14 @@
           authorize: yes
           auth_pass: "{{ enable_password }}"
           platform: cisco_ios
-     - name: Create VLAN interface
-       ios_interface:
-         name: "Vlan{{ vlan_id }}"
-         description: "Interface for VLAN {{ vlan_id }}"
-         ipv4:
-           address: "{{ vlan_ip }}"
-           mask: "255.255.255.0"
-         state: present
+    - name: Create VLAN interface
+        ios_interface:
+          name: "Vlan{{ vlan_id }}"
+          description: "Interface for VLAN {{ vlan_id }}"
+          ipv4:
+            address: "{{ vlan_ip }}"
+            mask: "255.255.255.0"
+        state: present
         provider:
           host: "{{ inventory_hostname }}"
           username: "{{ username }}"
