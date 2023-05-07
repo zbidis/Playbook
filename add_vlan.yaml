@@ -1,3 +1,4 @@
+---
 - name: Add VLAN to switch
   hosts: SW_Core_TN
   gather_facts: no
