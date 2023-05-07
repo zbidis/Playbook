@@ -1,13 +1,12 @@
----
 - name: Create VLAN and Interface
   hosts: SW_Core_MA
   gather_facts: no
   vars:
-    vlan_id: 100
-    vlan_ip: 10.10.100.254
     username: szbidi
     password: Cisco123*
     enable_password: Cisco123*
+    vlan_id: "{{ lookup('env', 'vlan_id') }}"
+    vlan_ip: "{{ lookup('env', 'vlan_ip') }}"
   tasks:
     - name: Create VLAN
       ios_vlan:
@@ -25,7 +24,7 @@
       ios_interface:
         name: "Vlan{{ vlan_id }}"
         description: "Interface for VLAN {{ vlan_id }}"
-        ip_address: "{{ vlan_ip }}/24"
+        address: "{{ vlan_ip }}/24"
         state: present
         provider:
           host: "{{ inventory_hostname }}"
