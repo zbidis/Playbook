@@ -5,7 +5,13 @@
     username: szbidi
     password: Cisco123*
     enable_password: Cisco123*
-    vlan_id: "{{ vlan_id | int }}"
+  vars_prompt:
+    - name: vlan_id
+      prompt: "Enter VLAN ID"
+      private: no
+    - name: vlan_ip
+      prompt: "Enter IP address for VLAN interface"
+      private: no
   tasks:
     - name: Create VLAN
       ios_vlan:
@@ -23,8 +29,7 @@
       ios_interface:
         name: "Vlan{{ vlan_id }}"
         description: "Interface for VLAN {{ vlan_id }}"
-        ipv4:
-          address: "{{ vlan_ip }}/24"
+        ip_address: "{{ vlan_ip }}/24"
         state: present
         provider:
           host: "{{ inventory_hostname }}"
@@ -33,3 +38,5 @@
           authorize: yes
           auth_pass: "{{ enable_password }}"
           platform: cisco_ios
+        with_items:
+          - "{{ vlan_id | string | int }}"
