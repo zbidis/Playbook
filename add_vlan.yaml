@@ -1,5 +1,5 @@
 - name: Add VLAN to switch
-  hosts: all
+  hosts: SW_Core_TN
   gather_facts: no
   inventory: switches_Marroco
   vars:
