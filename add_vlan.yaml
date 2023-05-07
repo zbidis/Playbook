@@ -1,5 +1,5 @@
 - name: Add VLAN to switch
-  hosts: all
+  hosts: switches_Marroco
   gather_facts: no
   vars:
     username: szbidi
