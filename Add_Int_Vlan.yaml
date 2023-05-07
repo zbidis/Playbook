@@ -25,7 +25,9 @@
       ios_interface:
         name: "Vlan{{ vlan_id }}"
         description: "Interface for VLAN {{ vlan_id }}"
-        ip_address: "{{ vlan_ip }}/24"
+        ipv4:
+          address: "{{ vlan_ip }}"
+          mask: "255.255.255.0"
         state: present
         provider:
           host: "{{ inventory_hostname }}"
