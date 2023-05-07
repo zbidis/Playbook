@@ -2,14 +2,9 @@
 - name: Create VLAN and Interface
   hosts: SW_Core_MA
   gather_facts: no
-  vars_prompt:
-    - name: vlan_id
-      prompt: "Enter VLAN ID"
-      private: no
-    - name: vlan_ip
-      prompt: "Enter IP address for VLAN interface"
-      private: no
   vars:
+    vlan_id: 100
+    vlan_ip: 10.10.100.254
     username: szbidi
     password: Cisco123*
     enable_password: Cisco123*
@@ -39,5 +34,3 @@
           authorize: yes
           auth_pass: "{{ enable_password }}"
           platform: cisco_ios
-        with_items:
-          - "{{ vlan_id }}"
