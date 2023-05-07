@@ -1,6 +1,6 @@
 ---
 - name: Create VLAN and Interface
-  hosts: switches
+  hosts: SW_Core_MA
   gather_facts: no
   vars_prompt:
     - name: vlan_id
