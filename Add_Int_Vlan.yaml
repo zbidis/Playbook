@@ -1,3 +1,4 @@
+---
 - name: Create VLAN and Interface
   hosts: SW_Core_MA
   gather_facts: no
