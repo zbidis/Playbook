@@ -6,8 +6,7 @@
     username: szbidi
     password: Cisco123*
     enable_password: Cisco123*
-    vlan_id: "{{ hostvars[inventory_hostname]['vlan_id'] }}"
-    vlan_ip: "{{ hostvars[inventory_hostname]['vlan_ip'] }}"
+
   tasks:
     - name: Show running-config
       ios_command:
