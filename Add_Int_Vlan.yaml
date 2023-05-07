@@ -24,7 +24,7 @@
     - name: Create VLAN interface
       ios_config:
         src: |
-          interface VLAN {{ vlan_id }}
+          interface {{ vlan_id }}
           description VLAN {{ vlan_id }}
           ip address {{ vlan_ip }}/24
         state: present
