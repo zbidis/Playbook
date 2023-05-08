@@ -1,3 +1,5 @@
 collections:
 - name: cisco.ios
   version: 2.2.0
+- name: cisco.iosxr
+  version: 1.0.0
