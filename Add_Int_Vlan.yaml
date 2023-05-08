@@ -8,19 +8,6 @@
     password: Cisco123*
     enable_password: Cisco123*
   tasks:
-    - name: Create VLAN
-      ios_vlan:
-        vlan_id: "{{ vlan_id }}"
-        name: "VLAN{{ vlan_id }}"
-        state: present
-        provider:
-          host: "{{ inventory_hostname }}"
-          username: "{{ username }}"
-          password: "{{ password }}"
-          authorize: yes
-          auth_pass: "{{ enable_password }}"
-          platform: cisco_ios
-
     - name: Override device configuration of all interfaces with provided configuration
       cisco.iosxr.iosxr_l3_interfaces:
         config:
