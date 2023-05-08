@@ -21,16 +21,9 @@
           auth_pass: "{{ enable_password }}"
           platform: cisco_ios
 
-    - name: Create VLAN interface
-      ios_interface:
-        name: "Vlan{{ vlan_id }}"
-        description: "Interface for VLAN {{ vlan_id }}"
-        ip_address: "{{ vlan_ip }}/24"
-        state: present
-        provider:
-          host: "{{ inventory_hostname }}"
-          username: "{{ username }}"
-          password: "{{ password }}"
-          authorize: yes
-          auth_pass: "{{ enable_password }}"
-          platform: cisco_ios
+    - name: Override device configuration of all interfaces with provided configuration
+      cisco.iosxr.iosxr_l3_interfaces:
+        config:
+        - name: vlan"{{ vlan_id }}"
+          ipv4:
+          - address: 192.168.0.1/24
