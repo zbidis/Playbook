@@ -1,7 +1,8 @@
 - name: add new vlan interface and give it ip addr
   hosts: SW_Core_MA
   gather_facts: no
-  vars: {ipaddr: 192.168.13.13, subnet: 255.255.255.0, vlan_id: '100', name: 'Vlan{{vlan_id}}'}
+  #vars: {ipaddr: 192.168.13.13, subnet: 255.255.255.0, vlan_id: '100', name: 'Vlan{{vlan_id}}'}
+  vars: {name: 'Vlan{{vlan_id}}'}
   tasks:
   - name: add "Vlan{{vlan_id}}"
     ios_config:
