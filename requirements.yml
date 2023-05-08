@@ -4,4 +4,8 @@ collections:
 - name: cisco.iosxr
   version: 2.1.0
 - name: ansible.netcommon
-  version: 1.6.0
+  version: 0.6.0
+- name: ansible.netmiko
+  version: 3.4.0
+- name: community.general
+  version: 3.5.0
