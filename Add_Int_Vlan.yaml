@@ -1,14 +1,11 @@
-- name: Create VLAN and Interface
+- name: add new vlan interface and give it ip addr
   hosts: SW_Core_MA
   gather_facts: no
-  vars:
-    username: szbidi
-    password: Cisco123*
-    enable_password: Cisco123*
+  vars: {ipaddr: 192.168.13.13, subnet: 255.255.255.0, vlan_id: '100', name: 'Vlan{{vlan_id}}'}
   tasks:
-    - name: Override device configuration of all interfaces with provided configuration
-      cisco.iosxr.iosxr_l3_interfaces:
-        config:
-        - name: vlan"{{ vlan_id }}"
-          ipv4:
-          - address: 192.168.0.1/24
+  - name: add "Vlan{{vlan_id}}"
+    ios_config:
+        lines:
+          - int {{ name }}
+          - no shutdown
+          - ip addr {{ipaddr}} {{subnet}}
