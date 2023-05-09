@@ -1,5 +1,7 @@
 ---
 - name: Merge provided configuration with device configuration
+  hosts: SW_Core_MA
+  gather_facts: no
   cisco.ios.ios_l3_interfaces:
     config:
     - name: Ethernet0/0
