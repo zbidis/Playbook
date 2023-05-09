@@ -4,7 +4,7 @@
   vars: {name: '{{int_type}}{{int_id}}'}
   tasks:
   - name: trunk
-    ios_l2_interfaces:
+    ios_l2_interface:
       config:
       - name: '{{ name }}'
         mode: trunk
