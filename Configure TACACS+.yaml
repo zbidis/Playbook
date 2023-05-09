@@ -1,0 +1,34 @@
+- name: Configure TACACS+ on Cisco IOS device
+  hosts: SW_Core_MA
+  gather_facts: no
+
+  vars:
+    tacacs_server: 192.168.1.10
+    tacacs_key: secretkey
+    tacacs_timeout: 5
+    tacacs_auth_port: 1812
+    tacacs_acct_port: 1813
+
+  tasks:
+    - name: Configure TACACS+ authentication
+      ios_config:
+        lines:
+          - tacacs-server host {{ tacacs_server }}
+          - tacacs-server key {{ tacacs_key }}
+          - tacacs-server timeout {{ tacacs_timeout }}
+          - tacacs-server directed-request
+          - aaa authentication login default group tacacs+ local
+
+    - name: Configure TACACS+ authorization
+      ios_config:
+        lines:
+          - aaa authorization exec default group tacacs+ if-authenticated
+
+    - name: Configure TACACS+ accounting
+      ios_config:
+        lines:
+          - tacacs-server host {{ tacacs_server }}
+          - tacacs-server key {{ tacacs_key }}
+          - tacacs-server timeout {{ tacacs_timeout }}
+          - tacacs-server directed-request
+          - aaa accounting exec default start-stop group tacacs+
