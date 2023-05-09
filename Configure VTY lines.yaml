@@ -9,6 +9,6 @@
       ios_config:
         lines:
           - line vty 0 4
-          - transport input {{ transport_input }}
-          - transport output {{ transport_output }}
+          - input transport {{ transport_input }}
+          - output transport {{ transport_output }}
 
