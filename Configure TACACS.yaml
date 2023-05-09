@@ -13,6 +13,7 @@
     - name: Configure TACACS+ authentication
       ios_config:
         lines:
+          - aaa new model
           - tacacs-server host {{ tacacs_server }}
           - tacacs-server key {{ tacacs_key }}
           - tacacs-server timeout {{ tacacs_timeout }}
