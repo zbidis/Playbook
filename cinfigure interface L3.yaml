@@ -14,4 +14,11 @@
           address: 192.168.1.1
           netmask: 255.255.255.0
         state: present
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          authorize: True
+          auth_pass: "{{ enable_password }}"
+          platform: cisco_ios
       become: yes
