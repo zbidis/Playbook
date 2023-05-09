@@ -8,7 +8,7 @@
     - name: Configure VTY lines
       ios_config:
         lines:
-          - line vty 0 15
+          - line vty 0 4
           - transport input {{ transport_input }}
           - transport output {{ transport_output }}
 
