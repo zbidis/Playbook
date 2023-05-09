@@ -1,0 +1,9 @@
+- name: Save configuration on Cisco IOS device
+  hosts: cisco_switches
+  gather_facts: no
+  tasks:
+    - name: Save configuration
+      ios_config:
+        lines:
+          - "do write memory"
+
