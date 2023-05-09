@@ -2,7 +2,7 @@
   hosts: SW_Core_TN
   gather_facts: no
   vars:
-    interface_name: E0/1
+    interface_name: Ethernet0/0
     allowed_vlans: "100,200,300"
   tasks:
     - name: Configure interface as a trunk port
