@@ -1,0 +1,15 @@
+- name: add new vlan interface and give it ip addr
+  hosts: SW_Core_MA
+  gather_facts: no
+  vars: {name: '{{int_type}}{{int_id}}'}
+  tasks:
+  - name: trunk
+    ios_l2_interfaces:
+      config:
+      - name: '{{ name }}'
+        mode: trunk
+        trunk: {allowed_vlans: 'add {{ allowed_vlans }}', encapsulation: dot1q}
+      state: merged
+  - name: Save running to startup when modified
+    cisco.ios.ios_config:
+      save_when: modified
