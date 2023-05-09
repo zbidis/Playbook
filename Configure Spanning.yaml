@@ -4,7 +4,6 @@
   vars:
     stp_mode: pvst
     stp_priority: 4096
-    stp_max_age: 20
     stp_hello_time: 2
     stp_forward_delay: 15
   tasks:
