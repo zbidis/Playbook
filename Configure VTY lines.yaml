@@ -2,8 +2,8 @@
   hosts: SW_Core_MA SW_Core_TN
   gather_facts: no
   vars:
-    transport_input: ssh
-    transport_output: ssh
+    transport_input: all
+    transport_output: all
   tasks:
     - name: Configure VTY lines
       ios_config:
