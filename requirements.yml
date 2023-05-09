@@ -5,5 +5,4 @@ collections:
   version: 2.1.0
 - name: ansible.netcommon
   version: 5.1.0
-- name: ansible-pylibssh
-  version: 0.9.0
+
