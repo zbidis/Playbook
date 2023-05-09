@@ -1,8 +1,10 @@
----
-- name: Configure L3 interfaces on Cisco IOS devices
+- name: Add VLAN to switch
   hosts: SW_Core_MA
   gather_facts: no
-
+  vars:
+    username: szbidi
+    password: Cisco123*
+    enable_password: Cisco123*
   tasks:
     - name: Configure L3 interface
       cisco.ios.ios_l3_interfaces:
