@@ -1,12 +1,9 @@
 - name: Create new user with privilege
-  hosts: cisco_switches
+  hosts: SW_Core_TN
   gather_facts: no
   tasks:
     - name: Create new user
       ios_config:
         lines:
           - username {{ username }} privilege {{ privilege }} password {{ password }}
-        provider:
-          host: "{{ inventory_hostname }}"
-          username: admin
-          password: mysecretpassword
+
