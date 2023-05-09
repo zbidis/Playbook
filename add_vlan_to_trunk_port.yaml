@@ -1,4 +1,4 @@
-- name: add new vlan interface and give it ip addr
+- name: add  vlan on port Trunk
   hosts: SW_Core_TN
   gather_facts: no
   vars: {name: '{{int_type}}{{int_id}}'}
