@@ -5,9 +5,10 @@
 
   tasks:
     - name: Configure L3 interface
-      ios_interface:
-        name: Ethernet0/0
-        ipv4:
+      cisco.ios.ios_l3_interfaces:
+        config:
+        - name: Ethernet0/0
+          ipv4:
           address: 192.168.1.1
           netmask: 255.255.255.0
         state: present
