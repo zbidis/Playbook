@@ -3,7 +3,7 @@
   gather_facts: no
 
   vars:
-    interface_name: Ethernet0/0
+    interface_name: GigabitEthernet1/0/1
     vlan_id: 100
 
   tasks:
