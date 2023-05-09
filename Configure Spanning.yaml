@@ -4,8 +4,6 @@
   vars:
     stp_mode: pvst
     stp_priority: 4096
-    stp_hello_time: 2
-    stp_forward_delay: 15
   tasks:
     - name: Configure STP mode
       ios_config:
@@ -17,10 +15,5 @@
         lines:
           - spanning-tree vlan 1-4094 priority {{ stp_priority }}
 
-    - name: Configure STP timers
-      ios_config:
-        lines:
-          - spanning-tree hello-time {{ stp_hello_time }}
-          - spanning-tree forward-time {{ stp_forward_delay }}
 
 
