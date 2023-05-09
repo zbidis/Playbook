@@ -1,0 +1,37 @@
+- name: Configure Spanning Tree Protocol
+  hosts: cisco_switches
+  gather_facts: no
+  vars:
+    stp_mode: pvst
+    stp_priority: 4096
+    stp_max_age: 20
+    stp_hello_time: 2
+    stp_forward_delay: 15
+  tasks:
+    - name: Configure STP mode
+      ios_config:
+        lines:
+          - spanning-tree mode {{ stp_mode }}
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: admin
+          password: mysecretpassword
+    - name: Configure STP priority
+      ios_config:
+        lines:
+          - spanning-tree vlan 1 priority {{ stp_priority }}
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: admin
+          password: mysecretpassword
+    - name: Configure STP timers
+      ios_config:
+        lines:
+          - spanning-tree max-age {{ stp_max_age }}
+          - spanning-tree hello-time {{ stp_hello_time }}
+          - spanning-tree forward-time {{ stp_forward_delay }}
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: admin
+          password: mysecretpassword
+
