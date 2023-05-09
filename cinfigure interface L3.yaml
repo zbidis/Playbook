@@ -4,7 +4,7 @@
   gather_facts: no
   vars:
     vlan_id: 100
-    interface_name: Et0/0
+    interface_name: Et0/1
   tasks:
     - name: Configure VLAN on switch
       ios_config:
