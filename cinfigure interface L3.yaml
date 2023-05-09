@@ -1,5 +1,5 @@
 - name: Assign interface to VLAN
-  hosts: cisco_device
+  hosts: SW_Core_MA
   gather_facts: no
 
   vars:
