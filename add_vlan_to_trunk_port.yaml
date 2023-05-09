@@ -1,13 +1,10 @@
 ---
-- name: add trunk port
+- name: assign int to vlan
   hosts: SW_Core_TN
   gather_facts: false
-  vars: {int_type: g, int_id: 1/1, name: '{{int_type}}{{int_id}}', allowed_vlans: '5'}
+  vars: {vlan_id: '100', int_type: E, int_id: 0/0, name: '{{int_type}}{{int_id}}'}
   tasks:
-  - name: trunk
-    ios_l2_interfaces:
-      config:
-      - name: '{{ name }}'
-        mode: trunk
-        trunk: {allowed_vlans: 'add {{ allowed_vlans }}', encapsulation: dot1q}
-      state: merged
+  - name: Add VLAN using aggregate
+    ios_vlan:
+      aggregate:
+      - {vlan_id: '{{ vlan_id }}', interfaces: '{{ name }}'}
