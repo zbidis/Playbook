@@ -1,14 +1,34 @@
-- name: add  vlan on port Trunk
+- name: Configure interface as a trunk port with allowed VLANs
   hosts: SW_Core_TN
   gather_facts: no
-  vars: {name: '{{int_type}}{{int_id}}'}
+  vars:
+    interface_name: E0/1
+    allowed_vlans: "100,200,300"
   tasks:
-  - name: trunk
-    ios_l2_interface:
-      name: '{{ name }}'
-      mode: trunk
-      trunk: {allowed_vlans: 'add {{ allowed_vlans }}', encapsulation: dot1q}
-      #state: merged
-  - name: Save running to startup when modified
-    cisco.ios.ios_config:
-      save_when: modified
+    - name: Configure interface as a trunk port
+      ios_command:
+        commands:
+          - interface {{ interface_name }}
+          - switchport mode trunk
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ ansible_user }}"
+          password: "{{ ansible_password }}"
+          auth_pass: "{{ ansible_password }}"
+          authorize: yes
+          auth_method: enable
+      register: result
+    - name: Configure allowed VLANs
+      ios_command:
+        commands:
+          - interface {{ interface_name }}
+          - switchport trunk allowed vlan {{ allowed_vlans }}
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ ansible_user }}"
+          password: "{{ ansible_password }}"
+          auth_pass: "{{ ansible_password }}"
+          authorize: yes
+          auth_method: enable
+      when: result.changed
+
