@@ -12,10 +12,7 @@
           - interface {{ interface_name }}
           - switchport mode access
           - switchport access vlan {{ vlan_id }}
-        provider:
-          host: "{{ inventory_hostname }}"
-          username: admin
-          password: mysecretpassword
+
 
 
 
