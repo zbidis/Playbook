@@ -8,7 +8,7 @@
       name: '{{ name }}'
       mode: trunk
       trunk: {allowed_vlans: 'add {{ allowed_vlans }}', encapsulation: dot1q}
-      state: merged
+      #state: merged
   - name: Save running to startup when modified
     cisco.ios.ios_config:
       save_when: modified
