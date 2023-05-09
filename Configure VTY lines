@@ -1,0 +1,14 @@
+- name: Configure VTY lines on Cisco IOS device
+  hosts: cisco_switches
+  gather_facts: no
+  vars:
+    transport_input: ssh
+    transport_output: ssh
+  tasks:
+    - name: Configure VTY lines
+      ios_config:
+        lines:
+          - line vty 0 15
+          - transport input {{ transport_input }}
+          - transport output {{ transport_output }}
+
