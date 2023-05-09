@@ -1,5 +1,5 @@
 - name: add new vlan interface and give it ip addr
-  hosts: SW_Core_MA
+  hosts: SW_Core_TN
   gather_facts: no
   vars: {name: '{{int_type}}{{int_id}}'}
   tasks:
