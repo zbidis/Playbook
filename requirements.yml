@@ -5,15 +5,6 @@ collections:
   version: 2.1.0
 - name: ansible.netcommon
   version: 5.1.0
-- name: ansible.parsing
-  version: 2.11.0
-- name: ansible.netmiko
-  version: 3.4.0
-- name: ansible.network
-  version: 2.4.1
-- name: ansible-oc
-  version: 1.4.0
-
 system:
- - name: ansible-pylibssh
-   version: 1.1.0
+- name: ansible-pylibssh
+  version: 1.1.0
