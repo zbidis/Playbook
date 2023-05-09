@@ -1,5 +1,5 @@
 - name: Configure VTY lines on Cisco IOS device
-  hosts: cisco_switches
+  hosts: SW_Core_MA SW_Core_TN
   gather_facts: no
   vars:
     transport_input: ssh
