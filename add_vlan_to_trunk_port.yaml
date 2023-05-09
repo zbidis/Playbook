@@ -1,34 +1,13 @@
-- name: Configure interface as a trunk port with allowed VLANs
+---
+- name: add trunk port
   hosts: SW_Core_TN
-  gather_facts: no
-  vars:
-    interface_name: Ethernet0/0
-    allowed_vlans: "100,200,300"
+  gather_facts: false
+  vars: {int_type: g, int_id: 1/1, name: '{{int_type}}{{int_id}}', allowed_vlans: '5'}
   tasks:
-    - name: Configure interface as a trunk port
-      ios_command:
-        commands:
-          - interface {{ interface_name }}
-          - switchport mode trunk
-        provider:
-          host: "{{ inventory_hostname }}"
-          username: "{{ ansible_user }}"
-          password: "{{ ansible_password }}"
-          auth_pass: "{{ ansible_password }}"
-          authorize: yes
-          auth_method: enable
-      register: result
-    - name: Configure allowed VLANs
-      ios_command:
-        commands:
-          - interface {{ interface_name }}
-          - switchport trunk allowed vlan {{ allowed_vlans }}
-        provider:
-          host: "{{ inventory_hostname }}"
-          username: "{{ ansible_user }}"
-          password: "{{ ansible_password }}"
-          auth_pass: "{{ ansible_password }}"
-          authorize: yes
-          auth_method: enable
-      when: result.changed
-
+  - name: trunk
+    ios_l2_interfaces:
+      config:
+      - name: '{{ name }}'
+        mode: trunk
+        trunk: {allowed_vlans: 'add {{ allowed_vlans }}', encapsulation: dot1q}
+      state: merged
