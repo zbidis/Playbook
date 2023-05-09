@@ -1,15 +1,22 @@
-- name: Assign interface to VLAN
+---
+- name: Configure interface on Cisco IOS device
   hosts: SW_Core_MA
   gather_facts: no
 
   vars:
-    vlan_id: 100
+    interface_name: Et0/0
+    description: "Connected to LAN switch port"
 
   tasks:
-    - name: Configure interface
+    - name: Configure interface description
       ios_command:
         commands:
           - interface {{ interface_name }}
-          - switchport access vlan {{ vlan_id }}
+          - description {{ description }}
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: admin
+          password: mysecretpassword
+
 
 
