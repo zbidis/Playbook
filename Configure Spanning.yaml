@@ -21,7 +21,6 @@
     - name: Configure STP timers
       ios_config:
         lines:
-          - spanning-tree max-age {{ stp_max_age }}
           - spanning-tree hello-time {{ stp_hello_time }}
           - spanning-tree forward-time {{ stp_forward_delay }}
 
