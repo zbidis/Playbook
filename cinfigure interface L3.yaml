@@ -1,10 +1,14 @@
 ---
-- name: Merge provided configuration with device configuration
+- name: Configure L3 interfaces on Cisco IOS devices
   hosts: SW_Core_MA
   gather_facts: no
-  cisco.ios.ios_l3_interfaces:
-    config:
-    - name: Ethernet0/0
-      ipv4:
-      - address: 192.168.0.1/24
-        secondary: true
+
+  tasks:
+    - name: Configure L3 interface
+      ios_interface:
+        name: Ethernet0/0
+        ipv4:
+          address: 192.168.1.1
+          netmask: 255.255.255.0
+        state: present
+      become: yes
