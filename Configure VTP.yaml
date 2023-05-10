@@ -1,0 +1,9 @@
+- name: Configure VTP mode Transparent on Cisco IOS device
+  hosts: SW_Core_MA
+  gather_facts: no
+
+  tasks:
+    - name: Configure VTP mode
+      ios_config:
+        lines:
+          - vtp mode transparent
