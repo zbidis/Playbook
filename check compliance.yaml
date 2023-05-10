@@ -37,8 +37,8 @@
     - name: Display output files
       debug:
         var:
-          - vlan_output
-          - stp_output
-          - interface_output
-          - acl_output
+          - "{{vlan_output
+          - "{{stp_output
+          - "{{interface_output
+          - "{{acl_output
 
