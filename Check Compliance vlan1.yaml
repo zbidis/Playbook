@@ -14,7 +14,7 @@
         that:
           - "'active' in vlan1_output.stdout[0]"
         fail_msg: "VLAN 1 is not up you do the Best Practices"
-        success_msg: "No Compliance01: VLAN 1 is up ===> you must desactivate IT"
+        success_msg: "No Compliance N°01: VLAN 1 is up ===> you must desactivate IT"
         
     - name: Get VTP status
       ios_command:
@@ -28,3 +28,17 @@
           - "'Transparent' in vtp_output.stdout[0]"
         fail_msg: "Not Complance N°02 VTP mode is not set to Transparent"
         success_msg: " VTP mode is set to Transparent"
+        
+    - name: Get VTY configuration
+      ios_command:
+        commands:
+          - show run | include transport input|output ssh
+      register: vty_output
+
+    - name: Check VTY configuration
+      assert:
+        that:
+          - "'transport input ssh' in vty_output.stdout[0]"
+          - "'transport output ssh' in vty_output.stdout[0]"
+        fail_msg: "Not Compliance N°03 VTY is not configured To SSH transport input&output check your configuration"
+        success_msg: "VTY is configured for SSH transport input/output great job "
