@@ -42,3 +42,21 @@
           - "'transport output ssh' in vty_output.stdout[0]"
         fail_msg: "Not Compliance N°03 VTY is not configured To SSH transport input&output check your configuration"
         success_msg: "VTY is configured for SSH transport input/output great job "
+        
+    - name: Get log for mismatch
+      ios_command:
+        commands:
+          - show logging | include mismatch
+      register: log_output
+      ignore_errors: true
+
+    - name: Display mismatch log
+      debug:
+        msg: "{{ log_output.stdout_lines }}"
+      when: log_output.stdout_lines | length > 0
+
+    - name: Display success message
+      debug:
+        msg: "Switch is functioning properly"
+      when: log_output.stdout_lines is not defined or log_output.stdout_lines | length == 0
+
