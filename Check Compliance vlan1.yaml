@@ -1,5 +1,5 @@
 - name: Check VLAN 1 status
-  hosts: SW_Core_MA SW_Core_MA
+  hosts: SW_Core_MA SW_Core_TN
   gather_facts: no
 
   tasks:
