@@ -16,8 +16,6 @@
           - show spanning-tree blockedports
       register: stp_output
 
-    - name: Check interface configuration
-
     - name: Check access control lists
       ios_command:
         commands:
