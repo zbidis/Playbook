@@ -1,0 +1,17 @@
+- name: Check VLAN 1 status
+  hosts: SW_Core_MA
+  gather_facts: no
+
+  tasks:
+    - name: Get VLAN 1 status
+      ios_command:
+        commands:
+          - show vlan id 1
+      register: vlan1_output
+
+    - name: Check VLAN 1 status
+      assert:
+        that:
+          - "'up' in vlan1_output.stdout[0]"
+        fail_msg: "VLAN 1 is not up"
+        success_msg: "VLAN 1 is up"
