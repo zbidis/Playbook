@@ -12,6 +12,6 @@
     - name: Check VLAN 1 status
       assert:
         that:
-          - "'up' in vlan1_output.stdout[0]"
+          - "'active' in vlan1_output.stdout[0]"
         fail_msg: "VLAN 1 is not up"
         success_msg: "VLAN 1 is up"
