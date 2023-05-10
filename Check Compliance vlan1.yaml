@@ -26,5 +26,5 @@
       assert:
         that:
           - "'Transparent' in vtp_output.stdout[0]"
-        fail_msg: "VTP mode is not set to Transparent"
-        success_msg: "VTP mode is set to Transparent"
+        fail_msg: "Not Complance N°02 VTP mode is not set to Transparent"
+        success_msg: " VTP mode is set to Transparent"
