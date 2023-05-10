@@ -39,6 +39,5 @@
         var:
           - "{{vlan_output}}"
           - "{{stp_output}}"
-          - "{{interface_output}}"
           - "{{acl_output}}"
 
