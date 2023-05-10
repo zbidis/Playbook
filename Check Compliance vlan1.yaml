@@ -13,5 +13,18 @@
       assert:
         that:
           - "'active' in vlan1_output.stdout[0]"
-        fail_msg: "VLAN 1 is not up"
+        fail_msg: "VLAN 1 is not up you do the Best Practices"
         success_msg: "No Compliance01: VLAN 1 is up ===> you must desactivate IT"
+        
+    - name: Get VTP status
+      ios_command:
+        commands:
+          - show vtp status
+      register: vtp_output
+
+    - name: Check VTP mode
+      assert:
+        that:
+          - "'Transparent' in vtp_output.stdout[0]"
+        fail_msg: "VTP mode is not set to Transparent"
+        success_msg: "VTP mode is set to Transparent"
