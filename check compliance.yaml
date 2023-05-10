@@ -8,36 +8,6 @@
         commands:
           - show ip interface brief
       register: vlan_output
-
-    - name: Check spanning tree configuration
-      cisco.ios.command:
-        commands:
-          - show spanning-tree summary
-          - show spanning-tree blockedports
-      register: stp_output
-
-    - name: Check access control lists
-      cisco.ios.command:
-        commands:
-          - show access-lists
-      register: acl_output
-
-    # Add more checks as needed
-
-    - name: Display compliance results
-      debug:
-        var: ansible_facts
-
-    # Perform desired actions based on compliance results
-    - name: Take action if switch is non-compliant
-      debug:
-        msg: "Switch is non-compliant with best practices"
-      when: vlan_output.stdout_lines is not search('Vlan1 192.168.230.66  YES NVRAM  up   up')
       
-    - name: Display output files
-      debug:
-        var:
-          - "{{vlan_output}}"
-          - "{{stp_output}}"
-          - "{{acl_output}}"
-
+    - debug:
+          var: vlan_output
