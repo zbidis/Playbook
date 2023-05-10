@@ -4,20 +4,20 @@
 
   tasks:
     - name: Check VLAN configuration
-      ios_command:
+      cisco.ios.command:
         commands:
           - show ip interface brief
       register: vlan_output
 
     - name: Check spanning tree configuration
-      ios_command:
+      cisco.ios.command:
         commands:
           - show spanning-tree summary
           - show spanning-tree blockedports
       register: stp_output
 
     - name: Check access control lists
-      ios_command:
+      cisco.ios.command:
         commands:
           - show access-lists
       register: acl_output
