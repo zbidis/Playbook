@@ -14,4 +14,4 @@
         that:
           - "'active' in vlan1_output.stdout[0]"
         fail_msg: "VLAN 1 is not up"
-        success_msg: "VLAN 1 is up"
+        success_msg: "No Compliance01: VLAN 1 is up ===> you must desactivate IT"
