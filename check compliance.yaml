@@ -32,4 +32,13 @@
     - name: Take action if switch is non-compliant
       debug:
         msg: "Switch is non-compliant with best practices"
-      when: vlan_output.stdout_lines is not search('Vlan1                  192.168.230.66  YES NVRAM  up                    up')
+      when: vlan_output.stdout_lines is not search('Vlan1 192.168.230.66  YES NVRAM  up   up')
+      
+    - name: Display output files
+      debug:
+        var:
+          - vlan_output
+          - stp_output
+          - interface_output
+          - acl_output
+
