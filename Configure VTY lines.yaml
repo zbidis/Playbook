@@ -1,5 +1,5 @@
 - name: Configure VTY lines on Cisco IOS device
-  hosts: SW_Core_MA SW_Core_TN
+  hosts: SW_Core_MA, SW_Core_TN
   gather_facts: no
   vars:
     transport_input: all
@@ -9,6 +9,5 @@
       ios_config:
         lines:
           - line vty 0 4
-          - transport input {{ transport_input }}
-          - transport output {{ transport_output }}
-
+            transport input {{ transport_input }}
+            transport output {{ transport_output }}
